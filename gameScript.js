@@ -8,7 +8,9 @@
 
 //Colors for text
 let p1Color = "rgb(247, 220, 220)"
-let p2Color = "rgb(227, 79, 79)"
+let p2Color = "rgba(168,47,52,255)"
+let doubleColor = "rgba(234,182,118,0.4)"
+let tripleColor = "rgba(8,97,153,0.5)"
 
 const cells = document.querySelectorAll('.cell');
 const cellSigns = new Array(9).fill(0);
@@ -72,7 +74,6 @@ function scoreCalc(roll , n){
 //? Funzione che calcola lo score totale e lo returna
 function updateRow(index, n){
   console.log("UpdateRow running, index:", index, " n:", n)
-  //! unoptimal way to do this , refresho a zero ogni row ogni volta che devo checkare
   if(player == "p1"){
     switch(index){
     case 0:
@@ -125,6 +126,7 @@ function clear(roll, index , player){
                   if(cellSigns[i] == roll){
                     cellSigns[i] = 0;
                     cells[i].innerHTML = '';
+                    cells[i].style.backgroundColor = "rgba(0,0,0,0)"             
                   }
                 }
               }
@@ -139,6 +141,7 @@ function clear(roll, index , player){
                   if(cellSigns[i] == roll){
                     cellSigns[i] = 0;
                     cells[i].innerHTML = '';
+                    cells[i].style.backgroundColor = "rgba(0,0,0,0)"
                   }
                 }
               }
@@ -154,6 +157,7 @@ function clear(roll, index , player){
                   if(cellSigns[i] == roll){
                     cellSigns[i] = 0;
                     cells[i].innerHTML = '';
+                    cells[i].style.backgroundColor = "rgba(0,0,0,0)"
                   }
                 }
               }
@@ -172,6 +176,7 @@ function clear(roll, index , player){
                   if(cellSigns[i] == roll){
                     cellSigns[i] = 0;
                     cells[i].innerHTML = '';
+                    cells[i].style.backgroundColor = "rgba(0,0,0,0)"
                   }
                 }
               }
@@ -186,6 +191,7 @@ function clear(roll, index , player){
                   if(cellSigns[i] == roll){
                     cellSigns[i] = 0;
                     cells[i].innerHTML = '';
+                    cells[i].style.backgroundColor = "rgba(0,0,0,0)"
                   }
                 }
               }
@@ -201,6 +207,7 @@ function clear(roll, index , player){
                   if(cellSigns[i] == roll){
                     cellSigns[i] = 0;
                     cells[i].innerHTML = '';
+                    cells[i].style.backgroundColor = "rgba(0,0,0,0)"
                   }
                 }
               }
@@ -235,10 +242,11 @@ function getScore(player){
 
 
 let diceCell = document.getElementById('dice')
-function roll(){
+function rollDice(){
   return Math.floor(Math.random() * 6)+1
 }
-diceCell.innerHTML = roll()
+let roll = rollDice()
+diceCell.innerHTML = roll
 
 for(let i = 0; i < cells.length ; i++ ){
     const cell = cells[i]; 
@@ -269,11 +277,47 @@ for(let i = 0; i < cells.length ; i++ ){
           cell.style.color = p2Color
         }
         cell.innerText = diceCell.innerHTML;
+        console.log(roll)
+
         cellSigns[i] = diceCell.innerHTML;
         //carico i valori slle righe per il calcolo
         console.log(`passo a updateRow(${i},${diceCell.innerHTML},${player})`)
         updateRow(i , diceCell.innerHTML,player)
         clear(diceCell.innerHTML , i , player)
+
+        //colori sfondi se combo
+        for(let j=0 ; j<=6 ; j++){
+          if(p1row1[j] == 2 || p2row1[j] == 2){
+            cells[0].style.backgroundColor = doubleColor
+            cells[3].style.backgroundColor = doubleColor
+            cells[6].style.backgroundColor = doubleColor
+          }
+          if(p1row2[j] == 2 || p2row2[j] == 2){
+            cells[1].style.backgroundColor = doubleColor
+            cells[4].style.backgroundColor = doubleColor
+            cells[7].style.backgroundColor = doubleColor
+          }
+          if(p1row3[j] == 2 || p2row3[j] == 2){
+            cells[2].style.backgroundColor = doubleColor
+            cells[5].style.backgroundColor = doubleColor
+            cells[8].style.backgroundColor = doubleColor
+          }//tripletta 
+          if(p1row1[j] == 3 || p2row1[j] == 3){
+            cells[0].style.backgroundColor = tripleColor
+            cells[3].style.backgroundColor = tripleColor
+            cells[6].style.backgroundColor = tripleColor
+          }
+          if(p1row2[j] == 3 || p2row2[j] == 3){
+            cells[1].style.backgroundColor = tripleColor
+            cells[4].style.backgroundColor = tripleColor
+            cells[7].style.backgroundColor = tripleColor
+          }
+          if(p1row3[j] == 3 || p2row3[j] == 3){
+            cells[2].style.backgroundColor = tripleColor
+            cells[5].style.backgroundColor = tripleColor
+            cells[8].style.backgroundColor = tripleColor
+          }
+        }
 
         //Get new roll
         if(player == "p2"){
@@ -281,7 +325,8 @@ for(let i = 0; i < cells.length ; i++ ){
         }else{
           diceCell.style.color = p2Color
         }
-        diceCell.innerHTML = roll()
+        roll = rollDice()
+        diceCell.innerHTML = roll
         console.table(cellSigns);
 
         let scorep1 = getScore("p1");
@@ -348,8 +393,3 @@ function checkVictory () {
     return false;
   }
 */
-
-
-
-
-
