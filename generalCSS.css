@@ -1,5 +1,5 @@
 :root {
-  --bgColor: #3535ec;
+  --bgColor: black;
   --altColor: #f70d68;
 }
 
@@ -10,7 +10,7 @@
 }
 
 
-body {
+body {  
   background-color: var(--bgColor);
   font-family: 'Press Start 2P', cursive;
 
@@ -58,9 +58,11 @@ a:hover {
 }
 
 .game-area {
+  width : 450px;
+  height: 450px;
+  border-radius: 20px;
   padding: 12px;
-
-  position: relative;
+  position:relative;
   /* Mi serve per far funzionare l'overwrite del position: absolute del game.alert*/
 }
 
