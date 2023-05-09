@@ -1,0 +1,105 @@
+:root {
+  --bgColor: #3535ec;
+  --altColor: #f70d68;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+body {
+  background-color: var(--bgColor);
+  font-family: 'Press Start 2P', cursive;
+
+  line-height: 1.4;
+  color: #ffffff;
+
+}
+
+.container {
+  width: 600px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin: 50px auto;
+}
+
+img {
+  max-width: 100%;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  margin-bottom: 16px;
+}
+
+a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--altColor);
+}
+
+/* STRUTTURA BASE*/
+
+.board {
+  display: flex;
+  flex-direction: row;
+}
+
+.game-area {
+  padding: 12px;
+
+  position: relative;
+  /* Mi serve per far funzionare l'overwrite del position: absolute del game.alert*/
+}
+
+.game-data {
+  padding: 12px;
+
+  width: 300px;
+  display : flex;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 16px;
+}
+
+p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+/* ALERT */
+
+.game-alert {
+  /* background-color: rgba(0, 255, 0, 0.75); */
+  position: absolute;
+  /* mi permette dei overscrivere tutto quello nella zona in ui e' contenuto */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.game-alert-message {
+  font-size: 40px;
+  padding: 20px;
+  background-color: var(--altColor);
+}
